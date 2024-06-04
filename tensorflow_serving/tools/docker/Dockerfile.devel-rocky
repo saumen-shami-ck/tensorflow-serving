@@ -1,5 +1,5 @@
 # Use CK Rocky Linux as base image
-FROM us-docker.pkg.dev/ck-corp-artifact-registry/ckdocker-gold/security/rocky-linux:prod
+FROM us-docker.pkg.dev/ck-corp-artifact-registry/ckdocker-gold/security/rocky-linux:prod as base_build
 
 # Install necessary dependencies
 RUN dnf -y update && dnf -y install \
