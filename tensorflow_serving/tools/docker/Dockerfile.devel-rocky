@@ -1,6 +1,9 @@
 # Use CK Rocky Linux as base image
 FROM us-docker.pkg.dev/ck-corp-artifact-registry/ckdocker-gold/security/rocky-linux:prod as base_build
 
+ARG TF_SERVING_VERSION_GIT_BRANCH=master
+ARG TF_SERVING_VERSION_GIT_COMMIT=HEAD
+
 # Install necessary dependencies
 RUN dnf -y update && dnf -y install \
     automake \
