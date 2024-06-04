@@ -37,22 +37,34 @@ RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactor
     --ignore-installed six>=1.12.0
 
 
-# Install Bazel
-RUN dnf install curl gpg -y
+## Install Bazel
+#RUN dnf install curl gpg -y
+#
+#RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
+#
+#RUN mv bazel-archive-keyring.gpg /etc/pki/rpm-gpg/
+#
+#ENV BAZEL_VERSION=4.2.1
+#
+#RUN curl -fLO "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
+#
+#RUN chmod +x "bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
+#
+#RUN "./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
+#
+#RUN bazel version
 
-RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
-
-RUN mv bazel-archive-keyring.gpg /etc/pki/rpm-gpg/
-
-ENV BAZEL_VERSION=4.2.1
-
-RUN curl -fLO "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-
-RUN chmod +x "bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-
-RUN "./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-
-RUN bazel version
+# Set up Bazel
+ENV BAZEL_VERSION 3.7.2
+WORKDIR /
+RUN mkdir /bazel && \
+    cd /bazel && \
+    curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -O https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
+    curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -o /bazel/LICENSE.txt https://raw.githubusercontent.com/bazelbuild/bazel/master/LICENSE && \
+    chmod +x bazel-*.sh && \
+    ./bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
+    cd / && \
+    rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
 # Download TF Serving sources (optionally at specific commit).
 WORKDIR /tensorflow-serving
