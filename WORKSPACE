@@ -10,13 +10,15 @@ workspace(name = "tf_serving")
 # 2. Get the sha256 hash of the archive with a command such as...
 #    curl -L https://github.com/tensorflow/tensorflow/archive/<git hash>.tar.gz | sha256sum
 #    and update the 'sha256' arg with the result.
+#    On Mac OS,
+#    curl -L https://github.com/tensorflow/tensorflow/archive/<git hash>.tar.gz | shasum -a 256
 # 3. Request the new archive to be mirrored on mirror.bazel.build for more
 #    reliable downloads.
 load("//tensorflow_serving:repo.bzl", "tensorflow_http_archive")
 tensorflow_http_archive(
     name = "org_tensorflow",
-    sha256 = "ff0df77ec72676d3260502dd19f34518ecd65bb9ead4f7dfdf8bd11cff8640e3",
-    git_commit = "c256c071bb26e1e13b4666d1b3e229e110bc914a",
+    sha256 = "33659dcc1011a951798722dc960cc6aac4f687f7cf3d80d4ea41d354ccfa499d",
+    git_commit = "a73cc22ba39f89463d3e0910dd12d84dbf8596d2",
 )
 
 # Import all of TensorFlow Serving's external dependencies.
