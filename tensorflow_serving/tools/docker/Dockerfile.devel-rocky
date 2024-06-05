@@ -73,6 +73,7 @@ RUN echo "Building with Bazel options: ${TF_SERVING_BAZEL_OPTIONS}"
 # Uncomment and adjust timeout settings as needed.
 #ENV BAZEL_SHUTDOWN=30
 #RUN bazel clean --expunge --async
+RUN rm -rf /root/.cache/bazel
 
 RUN bazel build --color=yes --curses=yes \
     ${TF_SERVING_BAZEL_OPTIONS} \
