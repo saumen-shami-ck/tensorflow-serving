@@ -42,7 +42,6 @@ def tf_serving_workspace():
         strip_prefix = "icu-release-64-2",
         sha256 = "dfc62618aa4bd3ca14a3df548cd65fe393155edd213e49c39f3a30ccd618fc27",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/unicode-org/icu/archive/release-64-2.zip",
             "https://github.com/unicode-org/icu/archive/release-64-2.zip",
         ],
         build_file = "//third_party/icu:BUILD",
@@ -76,7 +75,6 @@ def tf_serving_workspace():
         sha256 = "1ee310e5d0a19b9d584a855000434bb724aa744745d5b8ab1855c85bff8a8e21",
         strip_prefix = "glog-028d37889a1e80e8a07da1b8945ac706259e5fd8",
         urls = [
-            "https://mirror.bazel.build/github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
             "https://github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
         ],
     )
