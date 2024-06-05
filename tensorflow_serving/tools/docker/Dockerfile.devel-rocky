@@ -23,6 +23,8 @@ RUN dnf -y update && dnf -y install \
     java-1.8.0-openjdk-devel \
     java-1.8.0-openjdk-headless
 
+RUN ln -s /usr/bin/python38 /usr/bin/python
+
 RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactory/api/pypi/pypi/simple \
     future>=0.17.1 \
     grpcio \
@@ -35,24 +37,6 @@ RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactor
     requests \
     --ignore-installed setuptools \
     --ignore-installed six>=1.12.0
-
-
-## Install Bazel
-#RUN dnf install curl gpg -y
-#
-#RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
-#
-#RUN mv bazel-archive-keyring.gpg /etc/pki/rpm-gpg/
-#
-#ENV BAZEL_VERSION=4.2.1
-#
-#RUN curl -fLO "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-#
-#RUN chmod +x "bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-#
-#RUN "./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
-#
-#RUN bazel version
 
 # Set up Bazel
 ENV BAZEL_VERSION 3.7.2
