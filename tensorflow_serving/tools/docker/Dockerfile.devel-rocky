@@ -61,6 +61,8 @@ RUN echo "Building with build options: ${TF_SERVING_BUILD_OPTIONS}"
 ARG TF_SERVING_BAZEL_OPTIONS=""
 RUN echo "Building with Bazel options: ${TF_SERVING_BAZEL_OPTIONS}"
 
+RUN bazel clean --expunge
+
 RUN bazel build --color=yes --curses=yes \
     ${TF_SERVING_BAZEL_OPTIONS} \
     --verbose_failures \
