@@ -72,6 +72,7 @@ RUN pip3 --no-cache-dir install \
     numpy \
     portpicker \
     requests \
+    wheel \
     --ignore-installed setuptools \
     --ignore-installed six>=1.12.0
 
