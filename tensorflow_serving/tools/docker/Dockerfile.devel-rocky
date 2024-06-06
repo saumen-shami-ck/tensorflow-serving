@@ -24,6 +24,7 @@ RUN dnf -y update && dnf -y install \
     java-1.8.0-openjdk-headless
 
 RUN ln -s /usr/bin/python38 /usr/bin/python
+RUN ln -s /usr/bin/python38 /usr/local/bin/python
 
 RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactory/api/pypi/pypi/simple \
     future>=0.17.1 \
