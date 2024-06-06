@@ -26,6 +26,12 @@ RUN dnf -y update && dnf -y install \
 RUN ln -s /usr/bin/python38 /usr/bin/python
 RUN ln -s /usr/bin/python38 /usr/local/bin/python
 
+# Print Python path
+RUN which python
+
+# Run a Python CLI to print "Hello"
+RUN python -c "print('Hello')"
+
 RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactory/api/pypi/pypi/simple \
     future>=0.17.1 \
     grpcio \
