@@ -23,10 +23,10 @@ RUN dnf -y update && dnf -y install \
     java-1.8.0-openjdk-devel \
     java-1.8.0-openjdk-headless
 
-RUN ln -s /usr/bin/python38 /usr/bin/python
-RUN ln -s /usr/bin/python38 /usr/local/bin/python
+RUN ln -s /usr/bin/python38 /usr/bin/python && which python
+RUN ln -s /usr/bin/python38 /usr/local/bin/python && which python
 
-# Print Python path
+# Does python symlink persist in the next RUN command?
 RUN which python
 
 # Run a Python CLI to print "Hello"
