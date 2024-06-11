@@ -64,7 +64,7 @@ RUN mkdir /bazel && \
 # Use an intermediate image to copy files
 FROM base_build as intermediate
 WORKDIR /tensorflow-serving
-COPY .. .
+COPY . .
 
 # Now use the actual base image
 FROM base_build as binary_build
