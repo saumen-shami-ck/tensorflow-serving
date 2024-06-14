@@ -4,7 +4,7 @@ FROM us-docker.pkg.dev/ck-corp-artifact-registry/ckdocker-gold/security/rocky-li
 ARG TF_SERVING_VERSION_GIT_BRANCH=master
 ARG TF_SERVING_VERSION_GIT_COMMIT=HEAD
 
-# Install necessary dependencies
+# Install necessary dependencies and clean up in the same layer
 RUN dnf -y update && dnf -y install \
     automake \
     ca-certificates \
@@ -21,15 +21,11 @@ RUN dnf -y update && dnf -y install \
     which \
     python38 \
     java-1.8.0-openjdk-devel \
-    java-1.8.0-openjdk-headless
+    java-1.8.0-openjdk-headless && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf
 
 RUN ln -s /usr/bin/python3.8 /usr/bin/python && ls -ls /usr/bin | grep python && bash -c "which python"
-
-# Does python symlink persist in the next RUN command?
-RUN which python
-
-# Run a Python CLI to print "Hello"
-RUN python -c "print('Hello')"
 
 RUN pip3 install --index-url https://artifactory.corp.creditkarma.com/artifactory/api/pypi/pypi/simple \
     future>=0.17.1 \
